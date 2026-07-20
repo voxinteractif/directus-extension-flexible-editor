@@ -48,9 +48,11 @@
     import Placeholder from "@tiptap/extension-placeholder";
     import Dropcursor from "@tiptap/extension-dropcursor";
     import Gapcursor from "@tiptap/extension-gapcursor";
-    // VOX fork (vox.4): Link is registered as a BASE extension so legacy
-    // content keeps its links intact — but the link tools are removed from
-    // the registry (clients use the component_link inline component).
+    // VOX fork (vox.5): when a field's toolset excludes the link tools
+    // (the default — house links come from component_link), the Link mark is
+    // still registered as a BASE extension so legacy content keeps its links
+    // intact through edits. Fields that re-enable the link tools get the
+    // tool-configured Link instead (no double registration).
     import Link from "@tiptap/extension-link";
     import RelationBlock from "./tools/relation-block/node-extension";
     import RelationInlineBlock from "./tools/relation-inline-block/node-extension";
@@ -129,7 +131,11 @@
             Placeholder.configure({ placeholder: props.placeholder }),
             Dropcursor,
             Gapcursor,
-            Link.configure({ openOnClick: false, autolink: false }),
+            ...(props.tools.some((key) =>
+                ["link", "removeLink", "autolink"].includes(key)
+            )
+                ? []
+                : [Link.configure({ openOnClick: false, autolink: false })]),
             RelationBlock,
             RelationInlineBlock,
             RelationMark,

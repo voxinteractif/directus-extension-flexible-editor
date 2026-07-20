@@ -15,6 +15,22 @@ through the Directus extension runtime.
 
 ## Patches
 
+### vox.5 — Link tools hidden by default (SUPERSEDES vox.4 — do not deploy vox.4)
+
+- vox.4 removed the link tools from the registry outright; that force-strips
+  link authoring from every field fleet-wide, including legacy sites whose
+  fields explicitly enable them. Corrected approach:
+- `src/interface/tools/index.ts`: all three link tools (`link`,
+  `removeLink`, `autolink`) restored as-is; they are only excluded from
+  `interfaceOptionsDefault` — hidden on every field that uses the default
+  toolset, still listed in the Tools option so legacy sites re-enable per
+  field with full behavior.
+- `src/interface/interface.vue`: when a field's toolset excludes the link
+  tools, the Link mark is registered as a base extension
+  (`openOnClick: false, autolink: false`) so legacy content keeps its links
+  intact through edits; fields WITH link tools get the tool-configured Link
+  (no double registration).
+
 ### vox.4 — Remove link tools (house links come from component_link)
 
 - `src/interface/tools/index.ts`: the three link tools (`add`, `remove`,

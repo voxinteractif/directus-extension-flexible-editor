@@ -12,7 +12,7 @@ import strike from "./strike";
 import code from "./code";
 import subscript from "./subscript";
 import superscript from "./superscript";
-// VOX fork (vox.4): link tools removed — links come from component_link.
+import link from "./link";
 import relationMark from "./relation-mark";
 import hardBreak from "./hard-break";
 import horizontalRule from "./horizontal-rule";
@@ -45,6 +45,9 @@ const tools: Tool[] = [
     code,
     subscript,
     superscript,
+    link.add,
+    link.remove,
+    link.auto,
     relationMark,
     hardBreak,
     horizontalRule,
@@ -103,6 +106,11 @@ export const interfaceOptions: InterfaceOption[] = optionalTools.map(
     ({ key, name }) => ({ text: name, value: key })
 );
 
-export const interfaceOptionsDefault: string[] = optionalTools.map(
-    ({ key }) => key
-);
+// VOX fork (vox.5): link tools stay fully functional but are HIDDEN BY
+// DEFAULT — the house pattern is the component_link inline component. Legacy
+// sites that rely on raw editor links re-enable them per field via the
+// standard Tools option (they remain listed there).
+const HIDDEN_BY_DEFAULT = ["link", "removeLink", "autolink"];
+export const interfaceOptionsDefault: string[] = optionalTools
+    .map(({ key }) => key)
+    .filter((key) => !HIDDEN_BY_DEFAULT.includes(key));
