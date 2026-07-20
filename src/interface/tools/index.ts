@@ -12,7 +12,7 @@ import strike from "./strike";
 import code from "./code";
 import subscript from "./subscript";
 import superscript from "./superscript";
-import link from "./link";
+// VOX fork (vox.4): link tools removed — links come from component_link.
 import relationMark from "./relation-mark";
 import hardBreak from "./hard-break";
 import horizontalRule from "./horizontal-rule";
@@ -45,9 +45,6 @@ const tools: Tool[] = [
     code,
     subscript,
     superscript,
-    link.add,
-    link.remove,
-    link.auto,
     relationMark,
     hardBreak,
     horizontalRule,

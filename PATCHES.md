@@ -15,6 +15,18 @@ through the Directus extension runtime.
 
 ## Patches
 
+### vox.4 — Remove link tools (house links come from component_link)
+
+- `src/interface/tools/index.ts`: the three link tools (`add`, `remove`,
+  `auto`) are removed from the registry — raw editor links confuse operators
+  when the house pattern is the `component_link` inline component (resolved
+  targets, per-language URLs, variants). They also disappear from the Tools
+  option list.
+- `src/interface/interface.vue`: the Link mark stays registered as a BASE
+  extension (`openOnClick: false, autolink: false`) so legacy content keeps
+  its links intact through edits and continues to render — there is simply no
+  UI to author new ones.
+
 ### vox.3 — Toolbar: guard optional shortcut in the Formats dropdown
 
 - `src/interface/components/Toolbar.vue`: `tool.shortcut` is optional per the

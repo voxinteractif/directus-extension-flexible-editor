@@ -48,6 +48,10 @@
     import Placeholder from "@tiptap/extension-placeholder";
     import Dropcursor from "@tiptap/extension-dropcursor";
     import Gapcursor from "@tiptap/extension-gapcursor";
+    // VOX fork (vox.4): Link is registered as a BASE extension so legacy
+    // content keeps its links intact — but the link tools are removed from
+    // the registry (clients use the component_link inline component).
+    import Link from "@tiptap/extension-link";
     import RelationBlock from "./tools/relation-block/node-extension";
     import RelationInlineBlock from "./tools/relation-inline-block/node-extension";
     import RelationMark from "./tools/relation-mark/node-extension";
@@ -125,6 +129,7 @@
             Placeholder.configure({ placeholder: props.placeholder }),
             Dropcursor,
             Gapcursor,
+            Link.configure({ openOnClick: false, autolink: false }),
             RelationBlock,
             RelationInlineBlock,
             RelationMark,
