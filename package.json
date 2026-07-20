@@ -1,7 +1,7 @@
 {
-    "name": "directus-extension-flexible-editor",
-    "version": "1.8.4",
-    "description": "A rich text editor (WYSIWYG) with JSON output that allows the integration of M2A relations to make it extremely flexible.",
+    "name": "@voxinteractif/directus-extension-flexible-editor",
+    "version": "1.8.4-vox.1",
+    "description": "A rich text editor (WYSIWYG) with JSON output that allows the integration of M2A relations to make it extremely flexible. (Vox Interactif fork of formfcw/directus-extension-flexible-editor — see PATCHES.md)",
     "license": "GPL-3.0",
     "author": {
         "email": "dev@formfcw.com",
@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/formfcw/directus-extension-flexible-editor"
+        "url": "https://github.com/voxinteractif/directus-extension-flexible-editor"
     },
     "icon": "description",
     "keywords": [
@@ -113,5 +113,8 @@
         "@tiptap/extension-text": "^2.6.6",
         "@tiptap/extension-text-align": "^2.6.6",
         "tiptap-render-view": "^1.0.2"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
     }
 }
