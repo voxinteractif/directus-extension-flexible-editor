@@ -15,6 +15,15 @@ through the Directus extension runtime.
 
 ## Patches
 
+### vox.3 — Toolbar: guard optional shortcut in the Formats dropdown
+
+- `src/interface/components/Toolbar.vue`: `tool.shortcut` is optional per the
+  Tool type, but the Formats dropdown called `translateShortcut(tool.shortcut)`
+  unconditionally (`keys.map` on undefined) — opening the dropdown crashed the
+  field for any format-group tool without a shortcut. Latent upstream bug
+  exposed by the vox.2 style tools (which deliberately ship no shortcuts).
+  Fixed with `v-if="tool.shortcut?.length"` on the hint.
+
 ### vox.2 — House style primitives (styledSpan mark + callout node)
 
 - `shared/vox-styles.ts`: two TipTap extensions — `styledSpan` mark

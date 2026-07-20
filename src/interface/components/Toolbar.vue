@@ -50,7 +50,8 @@
                     <v-list-item-content>
                         <v-text-overflow :text="tool.name" />
                     </v-list-item-content>
-                    <v-list-item-hint>{{ translateShortcut(tool.shortcut as string[]) }}</v-list-item-hint>
+                    <!-- VOX fork (vox.3): shortcut is optional per the Tool type — guard the hint -->
+                    <v-list-item-hint v-if="tool.shortcut?.length">{{ translateShortcut(tool.shortcut as string[]) }}</v-list-item-hint>
                 </v-list-item>
             </v-list>
         </v-menu>

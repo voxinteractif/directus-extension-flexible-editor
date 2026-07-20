@@ -1,7 +1,7 @@
 {
     "name": "@voxinteractif/directus-extension-flexible-editor",
-    "version": "1.8.4-vox.2",
-    "description": "A rich text editor (WYSIWYG) with JSON output that allows the integration of M2A relations to make it extremely flexible. (Vox Interactif fork of formfcw/directus-extension-flexible-editor — see PATCHES.md)",
+    "version": "1.8.4-vox.3",
+    "description": "A rich text editor (WYSIWYG) with JSON output that allows the integration of M2A relations to make it extremely flexible. (Vox Interactif fork of formfcw/directus-extension-flexible-editor \u2014 see PATCHES.md)",
     "license": "GPL-3.0",
     "author": {
         "email": "dev@formfcw.com",
