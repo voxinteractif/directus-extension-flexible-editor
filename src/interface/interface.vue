@@ -468,6 +468,54 @@
         font-weight: bold;
     }
 
+    /* VOX fork (PATCHES.md vox.2): approximate previews for house styles.
+       Real visuals live in each site's stylesheet — these only make the
+       marks/nodes visible while editing, using Directus theme variables. */
+    .flexible-editor :deep(span[data-style="lead"]) {
+        font-size: 1.15em;
+        font-weight: 500;
+    }
+
+    .flexible-editor :deep(span[data-style="fine-print"]) {
+        font-size: 0.85em;
+        color: var(--theme--foreground-subdued, var(--foreground-subdued));
+    }
+
+    .flexible-editor :deep(span[data-style="highlight"]) {
+        background-color: color-mix(
+            in srgb,
+            var(--theme--primary, var(--primary)) 18%,
+            transparent
+        );
+        border-radius: 2px;
+        padding: 0 0.15em;
+    }
+
+    .flexible-editor :deep(aside[data-variant]) {
+        border-left: 3px solid var(--theme--primary, var(--primary));
+        background-color: var(
+            --theme--background-subdued,
+            var(--background-subdued)
+        );
+        border-radius: var(--theme--border-radius, var(--border-radius));
+        padding: var(
+            --theme--form--field--input--padding,
+            var(--input-padding)
+        );
+        margin: 0.5em 0;
+    }
+
+    .flexible-editor :deep(aside[data-variant="warning"]) {
+        border-left-color: var(--theme--warning, var(--warning));
+    }
+
+    .flexible-editor :deep(aside[data-variant="pull-quote"]) {
+        border-left-color: var(--theme--border-color, var(--border-normal));
+        background-color: transparent;
+        font-size: 1.15em;
+        font-style: italic;
+    }
+
     .flexible-editor :deep(a) {
         color: var(--theme--primary, var(--primary));
         border-bottom: 1px solid var(--theme--primary, var(--primary));

@@ -15,6 +15,27 @@ through the Directus extension runtime.
 
 ## Patches
 
+### vox.2 — House style primitives (styledSpan mark + callout node)
+
+- `shared/vox-styles.ts`: two TipTap extensions — `styledSpan` mark
+  (inline, `data-style` attr) and `callout` node (block, `data-variant`
+  attr, `content: block+`). Defined in `/shared` so the display and the
+  published `/content` subpath render them too (registered in
+  `shared/extensions.ts`).
+- `src/interface/styles-registry.ts`: the constrained style lists (inline:
+  lead / fine-print / highlight; block: info / warning / pull-quote). One
+  entry = one toolbar tool everywhere; narrow per field via the standard
+  Tools option. Free-form class input is deliberately not offered.
+- `src/interface/tools/styled-span.ts` + `callout.ts`: tool factories
+  (`groups: ["format"]` → they appear in the native Formats dropdown).
+  Registered in `src/interface/tools/index.ts`.
+- `src/interface/interface.vue`: approximate admin preview styles on
+  Directus theme variables; site CSS owns the real visuals
+  (`prose-style--<key>` / `prose-callout--<variant>` classes emitted by the
+  Vox frontend renderer).
+- Adding a future style = one registry entry (+ site CSS). Keys are stored
+  in content JSON — never rename existing keys.
+
 ### vox.1 — Fork bootstrap (no functional change)
 
 - `package.json`: renamed to `@voxinteractif/directus-extension-flexible-editor`,

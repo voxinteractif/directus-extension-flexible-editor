@@ -20,6 +20,9 @@ import textAlign from "./text-align";
 import bulletList from "./bullet-list";
 import orderedList from "./ordered-list";
 import blockquote from "./blockquote";
+import styledSpanTool from "./styled-span";
+import calloutTool from "./callout";
+import { INLINE_STYLES, BLOCK_VARIANTS } from "../styles-registry";
 import table from "./table";
 import fullscreen from "./fullscreen";
 import type { AnyExtension } from "@tiptap/core";
@@ -52,6 +55,9 @@ const tools: Tool[] = [
     bulletList,
     orderedList,
     blockquote,
+    // VOX fork: house styles from the central registry (PATCHES.md vox.2)
+    ...INLINE_STYLES.map(styledSpanTool),
+    ...BLOCK_VARIANTS.map(calloutTool),
     table,
     history.undo,
     history.redo,
