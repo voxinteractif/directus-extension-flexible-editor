@@ -36,7 +36,9 @@ Two changes, unrelated to each other.
   until a provisioner hook began writing `m2aField` onto fields — the crash
   needs `m2aField` set AND the allowed-collections list empty.
 - **Untouched upstream code** (`git diff 0cee9fb..HEAD` never included this
-  file). Reported upstream as well; keep this patch until it lands there.
+  file). Submitted upstream as
+  [formfcw#83](https://github.com/formfcw/directus-extension-flexible-editor/pull/83)
+  — drop this patch once it lands there and the fix is rebased in.
 
 **2. Link tools are default-ON again — REVERTS the vox.5/vox.4 default.**
 
