@@ -131,6 +131,12 @@
             Placeholder.configure({ placeholder: props.placeholder }),
             Dropcursor,
             Gapcursor,
+            // VOX fork (vox.5): a field whose toolset excludes the link tools
+            // still needs the Link mark registered, or ProseMirror strips
+            // existing links on edit. Fields WITH the tools get the
+            // tool-configured Link instead (no double registration). Since
+            // vox.6 the default toolset includes the link tools again, so this
+            // branch only fires for fields that opted out explicitly.
             ...(props.tools.some((key) =>
                 ["link", "removeLink", "autolink"].includes(key)
             )

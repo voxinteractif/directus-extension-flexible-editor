@@ -106,11 +106,13 @@ export const interfaceOptions: InterfaceOption[] = optionalTools.map(
     ({ key, name }) => ({ text: name, value: key })
 );
 
-// VOX fork (vox.5): link tools stay fully functional but are HIDDEN BY
-// DEFAULT — the house pattern is the component_link inline component. Legacy
-// sites that rely on raw editor links re-enable them per field via the
-// standard Tools option (they remain listed there).
-const HIDDEN_BY_DEFAULT = ["link", "removeLink", "autolink"];
-export const interfaceOptionsDefault: string[] = optionalTools
-    .map(({ key }) => key)
-    .filter((key) => !HIDDEN_BY_DEFAULT.includes(key));
+// VOX fork (vox.6): back to the upstream default — EVERY optional tool,
+// link tools included. Do NOT re-introduce a hidden-by-default list here
+// (vox.4/vox.5 did; see PATCHES.md for why it was wrong): `component_link`
+// only covers resolved INTERNAL targets, so hiding the link tools removes
+// external URLs, mailto: and in-page anchors with nothing replacing them.
+// The house preference for component_link is guidance, not a toolbar
+// lockout — sites that want it enforced set `tools` explicitly per field.
+export const interfaceOptionsDefault: string[] = optionalTools.map(
+    ({ key }) => key
+);
