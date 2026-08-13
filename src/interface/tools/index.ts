@@ -8,6 +8,7 @@ import paragraph from "./paragraph";
 import codeBlock from "./code-block";
 import bold from "./bold";
 import italic from "./italic";
+import underline from "./underline";
 import strike from "./strike";
 import code from "./code";
 import subscript from "./subscript";
@@ -41,6 +42,7 @@ const tools: Tool[] = [
     heading(6),
     bold,
     italic,
+    underline,
     strike,
     code,
     subscript,

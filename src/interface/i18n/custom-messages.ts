@@ -40,6 +40,7 @@ export default {
         text_align: "$t:text_align",
         bold: "$t:wysiwyg_options.bold",
         italic: "$t:wysiwyg_options.italic",
+        underline: "$t:wysiwyg_options.underline",
         strike: "$t:wysiwyg_options.strikethrough",
         code: "Code",
         subscript: "$t:wysiwyg_options.subscript",

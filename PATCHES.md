@@ -15,6 +15,39 @@ through the Directus extension runtime.
 
 ## Patches
 
+### vox.7 — Add the missing Underline mark
+
+Upstream ships every other inline mark (bold, italic, strike, code, subscript,
+superscript) but never implemented underline — the string does not appear
+anywhere in upstream `v1.8.4`, and `git log -S"underline"` on this fork is
+empty, so this is an omission being filled, not a revert of a removal.
+
+- **New tool** `src/interface/tools/underline.ts`, modelled on `strike.ts`:
+  `@tiptap/extension-underline`, icon `format_underlined`, shortcut `Mod+U`,
+  `extendMarkRangeIfUnselected` so a collapsed cursor toggles the whole word
+  like every other mark here. Registered in `src/interface/tools/index.ts`
+  between `italic` and `strike` (conventional B / I / U toolbar order) and
+  labelled from the Directus core key `$t:wysiwyg_options.underline`, which
+  already exists in the fork's `en-US.yaml` — no new translation string.
+- **`shared/extensions.ts`** gets `Underline` too. This is the non-obvious
+  half: that array backs `/content` and `src/display`, and a mark missing
+  from it is **silently dropped** when stored JSON is rendered. Editor-side
+  registration alone would produce content that looks right while authoring
+  and loses its underlines everywhere it is displayed.
+- **Renders `<u>`** — Tiptap's mark emits `<u>` and parses `<u>` plus
+  `text-decoration: underline`, so pasted underlined text is preserved. Chosen
+  over a `styledSpan` registry entry (vox.2) deliberately: `<u>` is semantic
+  and needs no site CSS, whereas a registry style renders a
+  `prose-style--*` class that is invisible on any site without a matching rule.
+- **Existing fields with an explicit `tools` array do not get it**, per the
+  freezing behaviour documented under vox.6. New fields and every field on the
+  default toolset pick it up automatically, since `interfaceOptionsDefault`
+  maps all optional tools.
+- Consumer requirement: the frontend renderer
+  `@voxinteractif/directus-flexible-editor` must be **≥ 2.3.0**, which adds the
+  matching `Underline` to its static extension list. An older renderer drops
+  the mark for the same reason `shared/extensions.ts` does.
+
 ### vox.6 — Fix blank Interface tab; link tools back on by default
 
 Two changes, unrelated to each other.
